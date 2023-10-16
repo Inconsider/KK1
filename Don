@@ -1,0 +1,27 @@
+def generate_personalized_message(contact, template):
+    """Génère un message personnalisé en utilisant le modèle et les informations du contact."""
+    return template.format(
+        Prénom=contact["First Name"],
+        Titre_actuel=contact["Current Title"],
+        Entreprise_actuelle=contact["Current Company"],
+        Lieu=contact["Location"],
+        Active_Project=contact["Active Project"].split(" ")[0],  # Prend le premier projet actif
+        Votre_nom="Donatien"
+    )
+
+# Modèle de message avec des espaces réservés
+message_template = """
+Bonjour {Prénom},
+
+J'espère que ce message vous trouve en bonne santé. Récemment, en naviguant sur LinkedIn, j'ai remarqué votre profil impressionnant. Actuellement en tant que {Titre_actuel} chez {Entreprise_actuelle} à {Lieu}, votre parcours professionnel m'a vraiment marqué. 
+
+Je suis particulièrement intéressé par {Active_Project} et je pense que nous pourrions avoir des opportunités ou des intérêts communs à discuter. Si vous êtes ouvert à une conversation, je serais ravi de prendre un moment pour échanger.
+
+En attendant votre retour, je vous souhaite une excellente journée et je vous remercie pour votre temps.
+
+Cordialement,
+{Votre_nom}
+"""
+
+# Générer les messages personnalisés pour chaque contact
+personalized_messages = data.apply(lambda contact: generate_personalized_message(contact, message_template), axis=1)
